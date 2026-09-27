@@ -1,5 +1,9 @@
-# DDA Pulse Frontend v1.0.1
+# DDA Pulse Frontend v1.0.2
 
-Build: `npm install && npm run build`
+Render environment variable:
+BACKEND_URL=https://dda-pulse.onrender.com
 
-Start: `npm start`
+Build: npm install && npm run build
+Start: npm start
+
+v1.0.2 calls the backend directly from Next.js server components. No browser proxy is used.
