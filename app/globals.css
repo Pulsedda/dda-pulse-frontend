@@ -64,3 +64,135 @@
 [data-theme="dark"] .card{
   border-color:#30353a;
 }
+
+/* ============================================================
+   v2.2.0 — full responsive mobile layer
+   Desktop styles above remain authoritative >= 901px.
+   ============================================================ */
+@media (max-width:900px){
+  html,body{overflow-x:hidden}
+  body{font-size:14px}
+  .shell{display:block;min-height:100vh}
+  aside{
+    position:sticky;top:0;z-index:100;width:100%;height:auto;min-height:0;
+    padding:10px 12px 8px;border-right:0;border-bottom:1px solid var(--line);
+    background:color-mix(in srgb,var(--panel) 94%,transparent);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)
+  }
+  .brand{margin:0 0 9px;justify-content:flex-start}
+  .brand .logo{width:35px;height:35px;min-width:35px}
+  .brand strong{font-size:14px}.brand span{font-size:9px}
+  aside nav{
+    display:flex;gap:6px;overflow-x:auto;padding:0 0 2px;margin:0;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch
+  }
+  aside nav::-webkit-scrollbar{display:none}
+  aside nav a{
+    flex:0 0 auto;margin:0;padding:8px 11px;border-radius:9px;
+    white-space:nowrap;font-size:11px
+  }
+  aside .monitor{display:none}
+  main{margin:0;width:100%;min-width:0}
+  main>header{height:48px;padding:0 14px;border-bottom:1px solid var(--line)}
+  .tools{gap:3px}.tools button{min-width:31px;height:30px;padding:0 7px;font-size:10px}
+  .tools span{margin:0 4px}
+  main> :not(header){margin-left:14px;margin-right:14px}
+  .title{margin-top:20px;margin-bottom:16px}
+  .title h1{font-size:28px;line-height:1.08;letter-spacing:-.8px}
+  .title p{font-size:12px;margin-top:6px}
+  .eyebrow{font-size:9px}
+  .headRow{align-items:flex-start;gap:10px}
+  .headRow .primary{margin-top:19px;white-space:nowrap}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .stat{min-height:112px;padding:14px}
+  .stat strong{font-size:25px}
+  .stat>span{font-size:9px}
+  .reelStat{grid-column:span 2}
+  .reelMetrics{gap:5px}
+  .reelMetrics strong{font-size:21px}
+  .card{border-radius:14px;padding:14px;margin-bottom:12px}
+  .cardHead{align-items:flex-start}
+  .card h2,.modal h2{font-size:16px}
+  .scroll{
+    overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;
+    overscroll-behavior-inline:contain
+  }
+  table{min-width:720px}
+  th{font-size:9px;white-space:nowrap}
+  td{font-size:12px;white-space:nowrap}
+  th,td{padding:11px 10px}
+  .broker b{max-width:170px;overflow:hidden;text-overflow:ellipsis}
+  .calTop{align-items:flex-start;flex-direction:column;gap:13px}
+  .legend{display:flex;gap:11px;overflow-x:auto;width:100%;padding-bottom:4px;scrollbar-width:none}
+  .legend::-webkit-scrollbar{display:none}
+  .hint{flex:0 0 auto}
+  .tooltip{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);max-width:88vw;white-space:normal;text-align:center}
+  .dates{width:100%;display:grid;grid-template-columns:minmax(0,1fr) 14px minmax(0,1fr);gap:6px;align-items:end}
+  .dates label{min-width:0}
+  .dates input{width:100%;min-width:0;height:40px}
+  .dates label>em{left:9px;bottom:12px;min-width:82px;font-size:11px}
+  .dates>button{grid-column:1/-1;width:100%;height:40px}
+  .cal{min-width:max-content}
+  .cal th,.cal td{padding:7px 6px}
+  .cal .brokerCol{min-width:145px;max-width:145px}
+  .cal .stick{position:sticky;left:0;z-index:5;background:var(--panel)}
+  .cal .stick2{position:sticky;left:145px;z-index:5;background:var(--panel);min-width:100px;max-width:100px}
+  .cal .stick3{position:sticky;left:245px;z-index:5;background:var(--panel);min-width:110px;max-width:110px}
+  .day{width:31px;height:31px;min-width:31px;border-radius:8px}
+  .rankControls{gap:10px}
+  .tabs,.metricTabs{width:100%;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar,.metricTabs::-webkit-scrollbar{display:none}
+  .tabs button,.metricTabs button{flex:0 0 auto}
+  .metricTabs{align-items:center}
+  .period{font-size:11px;margin-bottom:8px}
+  .settingsGrid{grid-template-columns:1fr;gap:10px}
+  .settingsGrid .wide{grid-column:auto}
+  .three,.two{grid-template-columns:1fr}
+  .rule{grid-template-columns:70px minmax(0,1fr)}
+  .org .inline{display:grid;grid-template-columns:minmax(0,1fr) 42px}
+  .saveBar{
+    position:sticky;bottom:0;z-index:40;margin:0!important;padding:10px 14px;
+    background:color-mix(in srgb,var(--bg) 92%,transparent);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border-top:1px solid var(--line)
+  }
+  .saveBar .primary{width:100%}
+  .modalBg{padding:12px;align-items:flex-end}
+  .modal{
+    width:100%;max-width:none;max-height:88dvh;overflow-y:auto;
+    border-radius:18px 18px 12px 12px;padding:18px;
+    -webkit-overflow-scrolling:touch
+  }
+  .modal .x{top:12px;right:12px}
+  .form{gap:10px}
+  .form input,.form select,.field input,.rule input,textarea,select,input{font-size:16px}
+  .override{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+  .override .colorOnly{width:100%;min-width:0;height:48px}
+  button,.primary,.secondary,a{touch-action:manipulation}
+}
+@media (max-width:560px){
+  main> :not(header){margin-left:10px;margin-right:10px}
+  main>header{padding:0 10px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{min-height:102px;padding:12px}
+  .stat strong{font-size:22px}
+  .title h1{font-size:25px}
+  .headRow{display:block}
+  .headRow .primary{width:100%;margin:0 0 12px}
+  .card{padding:11px}
+  .cal .brokerCol{min-width:125px;max-width:125px}
+  .cal .stick2{left:125px;min-width:92px;max-width:92px}
+  .cal .stick3{left:217px;min-width:100px;max-width:100px}
+  .broker b{max-width:115px}
+}
+@media (max-width:390px){
+  .brand span{display:none}
+  aside nav a{padding:7px 9px;font-size:10px}
+  .tools button{min-width:29px;padding:0 5px}
+  .reelMetrics small{font-size:8px}
+  .stat strong{font-size:20px}
+}
+@media (orientation:landscape) and (max-height:500px){
+  aside{position:relative}
+  .modal{max-height:94dvh}
+}
