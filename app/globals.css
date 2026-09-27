@@ -4,3 +4,63 @@
 /* v2.1.1 — color-only calendar and manual override */
 .day{font-size:0;color:transparent}
 .override .colorOnly{width:48px;height:48px;min-width:48px;padding:0;border-radius:12px;font-size:0}
+
+/* v2.1.2 — refined premium dark mode */
+[data-theme="dark"] .tabs,
+[data-theme="dark"] .metricTabs{
+  gap:6px;
+}
+[data-theme="dark"] .tabs button,
+[data-theme="dark"] .metricTabs button{
+  background:#181b1e;
+  color:#9299a3;
+  border:1px solid #30353b;
+  box-shadow:none;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease;
+}
+[data-theme="dark"] .tabs button:hover,
+[data-theme="dark"] .metricTabs button:hover{
+  background:#202428;
+  color:#d8dce1;
+  border-color:#444a51;
+}
+[data-theme="dark"] .tabs button.on,
+[data-theme="dark"] .metricTabs button.on{
+  background:#f3f4f5;
+  color:#111315;
+  border-color:#f3f4f5;
+  box-shadow:0 1px 0 rgba(255,255,255,.14),0 5px 18px rgba(0,0,0,.24);
+  font-weight:650;
+}
+[data-theme="dark"] .rankControls .metricTabs>span{
+  color:#7f8791;
+}
+[data-theme="dark"] table tbody tr{
+  transition:background .16s ease;
+}
+[data-theme="dark"] table tbody tr:hover td{
+  background:#2a2e31;
+}
+[data-theme="dark"] table tbody td{
+  border-bottom-color:#303438;
+}
+[data-theme="dark"] .rank{
+  background:#14171a;
+  color:#8f969e;
+  border:1px solid #2e3338;
+}
+[data-theme="dark"] .rank.selected{
+  background:#f1f2f3;
+  color:#121416;
+  border-color:#f1f2f3;
+  font-weight:700;
+}
+[data-theme="dark"] .leader td{
+  background:#25292c;
+}
+[data-theme="dark"] .leader:hover td{
+  background:#2b3033;
+}
+[data-theme="dark"] .card{
+  border-color:#30353a;
+}
