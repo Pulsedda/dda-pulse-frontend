@@ -1,0 +1,3 @@
+import "./globals.css"; import Link from "next/link";
+export const metadata={title:"DDA Pulse",description:"DDA Instagram KPI monitoring"};
+export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body><div className="shell"><aside><div className="brand">DDA <b>Pulse</b></div><nav><Link href="/">Dashboard</Link><Link href="/calendar">Calendar</Link><Link href="/rankings">Rankings</Link><Link href="/brokers">Brokers</Link><Link href="/settings">Settings</Link></nav></aside><main>{children}</main></div></body></html>}

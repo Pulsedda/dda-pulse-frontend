@@ -1,0 +1,1 @@
+export async function api(path:string,init?:RequestInit){const r=await fetch(`/api/proxy${path}`,{...init,cache:"no-store"});const t=await r.text();let d:any;try{d=t?JSON.parse(t):{}}catch{d={raw:t}}if(!r.ok)throw new Error(d?.error||d?.message||`HTTP ${r.status}`);return d}
