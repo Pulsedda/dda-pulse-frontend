@@ -1,8 +1,1 @@
-export default function RankingsPage() {
-  return (
-    <>
-      <div className="top"><div><div className="eyebrow">PERFORMANCE</div><h1>Rankings</h1><p>Broker content performance</p></div></div>
-      <section className="card"><h2>Rankings</h2><p className="mutedText">Views, likes, followers and qualifying content rankings.</p></section>
-    </>
-  );
-}
+"use client";import{useEffect,useState}from"react";import{api}from"@/lib/api";import{Title,fmt}from"@/components/UI";import{useApp}from"@/components/AppProvider";export default function Page(){const[p,setP]=useState("month"),[d,setD]=useState<any>();const{lang}=useApp();useEffect(()=>{api(`/api/rankings?period=${p}`).then(setD)},[p]);return <><Title en="Rankings" ru="Рейтинги" subEn="Social media performance leaders" subRu="Лидеры по показателям социальных сетей"/><div className="tabs"><button className={p==="month"?"on":""} onClick={()=>setP("month")}>{lang==="ru"?"Месяц":"Monthly"}</button><button className={p==="quarter"?"on":""} onClick={()=>setP("quarter")}>{lang==="ru"?"Квартал":"Quarterly"}</button></div><div className="card">{d&&<><div className="period">{d.from} → {d.to}</div><div className="scroll"><table><thead><tr><th>Broker</th><th>Department</th><th>Manager</th><th>Followers</th><th>Views</th><th>Reels</th></tr></thead><tbody>{d.brokers.map((b:any)=><tr key={b.id}><td><a className="broker" href={b.instagramUrl} target="_blank"><b>{b.name}</b><small>@{b.username}</small></a></td><td>{b.department||"—"}</td><td>{b.manager||"—"}</td>{["followers","views","reels"].map(k=><td key={k}><b>{fmt(b[k].value)}</b><span className="rank">#{b[k].rank}</span></td>)}</tr>)}</tbody></table></div></>}</div></>}
