@@ -1,1 +1,8 @@
-export default function Page(){return <><div className="top"><div><h1>Rankings</h1><p>Broker content performance</p></div></div><div className="section"><div className="card"><b>Rankings are ready for production data</b><p>Views, likes, followers and content rankings will be populated as production metrics accumulate.</p></div></div></>}
+export default function RankingsPage() {
+  return (
+    <>
+      <div className="top"><div><div className="eyebrow">PERFORMANCE</div><h1>Rankings</h1><p>Broker content performance</p></div></div>
+      <section className="card"><h2>Rankings</h2><p className="mutedText">Views, likes, followers and qualifying content rankings.</p></section>
+    </>
+  );
+}

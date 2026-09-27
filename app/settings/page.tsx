@@ -1,3 +1,8 @@
-import { api, backendUrl } from "@/lib/api";
-export const dynamic = "force-dynamic";
-export default async function Page(){try{const d=await api("/api/system/overview");return <><div className="top"><div><h1>Settings</h1><p>System status</p></div></div><div className="cards"><div className="card">Backend<strong>Online</strong></div><div className="card">Version<strong>{d?.version||"—"}</strong></div><div className="card">Phase<strong>{d?.phase||"—"}</strong></div><div className="card">Scanner<strong>{d?.automaticScanner?.intervalMinutes||60} min</strong></div></div><div className="section"><div className="card"><b>Backend URL</b><p>{backendUrl}</p><b>Timezone</b><p>{d?.timezone||"Asia/Dubai"}</p></div></div></>}catch(e:any){return <><div className="top"><div><h1>Settings</h1></div></div><div className="card"><b>Backend connection error</b><p>{e.message}</p></div></>}}
+export default function SettingsPage() {
+  return (
+    <>
+      <div className="top"><div><div className="eyebrow">SYSTEM</div><h1>Settings</h1><p>DDA Pulse system settings</p></div></div>
+      <section className="card"><h2>Backend</h2><p className="mutedText">Connected through the DDA Pulse frontend API layer.</p></section>
+    </>
+  );
+}
