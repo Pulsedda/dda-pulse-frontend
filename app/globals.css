@@ -421,3 +421,9 @@
 @media (max-width:390px){
   .brand span{display:block!important}
 }
+
+/* v2.4 admin access */
+.adminNav{margin-top:8px;width:100%;text-align:left;background:transparent;border:1px solid var(--line,#ddd);border-radius:10px;padding:11px 12px;color:inherit;cursor:pointer}.adminBadge{font-size:10px;font-weight:800;letter-spacing:.12em;border:1px solid currentColor;border-radius:999px;padding:4px 8px;opacity:.7;margin-left:auto}.adminLogin{max-width:420px}.adminLogin input{width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid var(--line,#ddd);border-radius:10px;background:transparent;color:inherit;font-size:16px;margin:12px 0}.adminLogin .primary{width:100%;border:0;cursor:pointer}.linkBtn{width:100%;background:transparent;border:0;color:inherit;opacity:.65;padding:12px;cursor:pointer}@media(max-width:900px){.adminNav{margin:4px 8px 8px;width:calc(100% - 16px)}.adminBadge{margin-left:8px}}
+
+/* v2.5.0 Developer console */
+.devCreate{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin:14px 0}.devCreate input{min-width:0}.rowBetween{display:flex;justify-content:space-between;align-items:center;gap:12px}.auditTable{max-height:520px;overflow:auto}.auditTable table{min-width:900px}.auditTable td{font-size:12px;vertical-align:top}@media(max-width:700px){.devCreate{grid-template-columns:1fr}.rowBetween{align-items:flex-start}.auditTable{max-height:480px}}

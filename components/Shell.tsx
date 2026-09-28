@@ -1,47 +1,18 @@
 "use client";
 import Link from"next/link";
-import{usePathname}from"next/navigation";
+import{usePathname,useRouter}from"next/navigation";
 import{useEffect,useState}from"react";
 import{useApp}from"./AppProvider";
-
-const nav=[["/","dashboard"],["/calendar","calendar"],["/rankings","rankings"],["/brokers","brokers"],["/settings","settings"]];
-
+import{api}from"@/lib/api";
+const publicNav=[["/","dashboard"],["/calendar","calendar"],["/rankings","rankings"]];
+const adminNav=[["/brokers","brokers"],["/settings","settings"]];
 export default function Shell({children}:{children:React.ReactNode}){
-  const p=usePathname(),{lang,setLang,dark,setDark,t}=useApp();
-  const[menuOpen,setMenuOpen]=useState(false);
-
-  useEffect(()=>setMenuOpen(false),[p]);
-  useEffect(()=>{
-    document.body.style.overflow=menuOpen?"hidden":"";
-    return()=>{document.body.style.overflow=""};
-  },[menuOpen]);
-
-  return <div className="shell">
-    <aside>
-      <div className="mobileTop">
-        <div className="brand">
-          <div className="logo"><b>DDA</b></div>
-          <div><strong>DDA Pulse</strong><span>Social Media KPI</span></div>
-        </div>
-        <button className={"hamburger "+(menuOpen?"open":"")} aria-label={menuOpen?"Close menu":"Open menu"} aria-expanded={menuOpen} onClick={()=>setMenuOpen(v=>!v)}>
-          <i/><i/><i/>
-        </button>
-      </div>
-      <nav className={menuOpen?"mobileOpen":""}>
-        {nav.map(x=><Link className={p===x[0]?"active":""} href={x[0]} key={x[0]}>{t(x[1])}</Link>)}
-      </nav>
-      <div className="monitor"><i/>DDA Pulse</div>
-    </aside>
-    {menuOpen&&<button className="menuBackdrop" aria-label="Close menu" onClick={()=>setMenuOpen(false)}/>}
-    <main>
-      <header><div/><div className="tools">
-        <button className={!dark?"sel":""} onClick={()=>setDark(false)}>☀</button>
-        <button className={dark?"sel":""} onClick={()=>setDark(true)}>☾</button>
-        <span/>
-        <button className={lang==="ru"?"sel":""} onClick={()=>setLang("ru")}>RU</button>
-        <button className={lang==="en"?"sel":""} onClick={()=>setLang("en")}>ENG</button>
-      </div></header>
-      {children}
-    </main>
-  </div>
+ const p=usePathname(),router=useRouter(),{lang,setLang,dark,setDark,t,admin,setAdmin}=useApp();const[menuOpen,setMenuOpen]=useState(false),[login,setLogin]=useState(false);
+ useEffect(()=>setMenuOpen(false),[p]);useEffect(()=>{document.body.style.overflow=menuOpen?"hidden":"";return()=>{document.body.style.overflow=""}},[menuOpen]);
+ useEffect(()=>{if(!admin.loading&&!admin.isAdmin&&(p==="/brokers"||p==="/settings"))router.replace("/");if(!admin.loading&&!admin.isDeveloper&&p==="/developer")router.replace("/")},[admin,p,router]);
+ useEffect(()=>{api("/api/audit/visit",{method:"POST",body:JSON.stringify({path:p})}).catch(()=>{})},[p]);
+ const nav=admin.isAdmin?[...publicNav,...adminNav]:publicNav;
+ const logout=async()=>{try{await api("/api/auth/logout",{method:"POST"})}catch{}setAdmin({loading:false,isAdmin:false,isDeveloper:false,username:null,role:null});router.replace("/")};
+ return <div className="shell"><aside><div className="mobileTop"><div className="brand"><div className="logo"><b>DDA</b></div><div><strong>DDA Pulse</strong><span>Social Media KPI</span></div></div><button className={"hamburger "+(menuOpen?"open":"")} aria-label={menuOpen?"Close menu":"Open menu"} aria-expanded={menuOpen} onClick={()=>setMenuOpen(v=>!v)}><i/><i/><i/></button></div><nav className={menuOpen?"mobileOpen":""}>{nav.map(x=><Link className={p===x[0]?"active":""} href={x[0]} key={x[0]}>{t(x[1])}</Link>)}{admin.isDeveloper&&<Link className={p==="/developer"?"active":""} href="/developer">{lang==="ru"?"Разработчик":"Developer"}</Link>}<button className="adminNav" onClick={()=>{setMenuOpen(false);admin.isAdmin?logout():setLogin(true)}}>{admin.isAdmin?(lang==="ru"?"Выйти":"Logout"):(lang==="ru"?"Вход Admin":"Admin login")}</button></nav><div className="monitor"><i/>DDA Pulse</div></aside>{menuOpen&&<button className="menuBackdrop" aria-label="Close menu" onClick={()=>setMenuOpen(false)}/>}<main><header><div/>{admin.isAdmin&&<span className="adminBadge">{admin.isDeveloper?"DEVELOPER":"ADMIN"}</span>}<div className="tools"><button className={!dark?"sel":""} onClick={()=>setDark(false)}>☀</button><button className={dark?"sel":""} onClick={()=>setDark(true)}>☾</button><span/><button className={lang==="ru"?"sel":""} onClick={()=>setLang("ru")}>RU</button><button className={lang==="en"?"sel":""} onClick={()=>setLang("en")}>ENG</button></div></header>{children}</main>{login&&<AdminLogin close={()=>setLogin(false)} lang={lang} setAdmin={setAdmin}/>}</div>
 }
+function AdminLogin({close,lang,setAdmin}:{close:()=>void;lang:string;setAdmin:any}){const[username,setUsername]=useState(""),[password,setPassword]=useState(""),[busy,setBusy]=useState(false),[err,setErr]=useState("");const login=async()=>{setBusy(true);setErr("");try{const x:any=await api("/api/auth/login",{method:"POST",body:JSON.stringify({username,password})});setAdmin({loading:false,isAdmin:true,isDeveloper:!!x.isDeveloper,username:x.username,role:x.role});close()}catch(e:any){setErr(e.message)}finally{setBusy(false)}};return <div className="modalBg" onClick={close}><div className="modal adminLogin" onClick={e=>e.stopPropagation()}><button className="x" onClick={close}>×</button><h2>{lang==="ru"?"Вход администратора":"Admin login"}</h2><p className="muted">{lang==="ru"?"Введите логин и пароль.":"Enter your username and password."}</p>{err&&<div className="error">{err}</div>}<input autoComplete="username" placeholder={lang==="ru"?"Логин":"Username"} value={username} onChange={e=>setUsername(e.target.value)} autoFocus/><input type="password" autoComplete="current-password" placeholder={lang==="ru"?"Пароль":"Password"} value={password} onChange={e=>setPassword(e.target.value)} onKeyDown={e=>{if(e.key==="Enter")login()}}/><button className="primary" disabled={busy||username.length<2||password.length<8} onClick={login}>{busy?"…":(lang==="ru"?"Войти":"Sign in")}</button></div></div>}
