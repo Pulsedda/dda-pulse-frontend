@@ -486,3 +486,8 @@ header{gap:12px!important}
 .refreshBtn:hover:not(:disabled){background:#25292d!important;border-color:#25292d!important}
 [data-theme=dark] .refreshBtn{background:#f4f5f6!important;color:#111315!important;border-color:#f4f5f6!important}
 [data-theme=dark] .refreshBtn:hover:not(:disabled){background:#fff!important;border-color:#fff!important}
+
+/* v2.5.8 legend tooltip: mouse hover/focus only, never click-toggle */
+.hint .tooltip{display:none!important;pointer-events:none!important}
+.hint .tooltip.show{display:block!important}
+.hint:active .tooltip:not(.show){display:none!important}
