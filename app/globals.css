@@ -427,3 +427,46 @@
 
 /* v2.5.0 Developer console */
 .devCreate{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;margin:14px 0}.devCreate input{min-width:0}.rowBetween{display:flex;justify-content:space-between;align-items:center;gap:12px}.auditTable{max-height:520px;overflow:auto}.auditTable table{min-width:900px}.auditTable td{font-size:12px;vertical-align:top}@media(max-width:700px){.devCreate{grid-template-columns:1fr}.rowBetween{align-items:flex-start}.auditTable{max-height:480px}}
+
+
+/* v2.5.1 — discreet admin login in the top utility bar */
+.adminNav{display:none!important}
+.headerLogin{
+  margin-left:2px!important;padding:6px 10px!important;min-width:auto!important;
+  border:1px solid var(--line)!important;background:var(--panel)!important;
+  color:var(--text)!important;border-radius:8px!important;font-weight:600!important;
+  box-shadow:var(--shadow)!important
+}
+.headerLogin:hover{opacity:.82}
+@media(max-width:900px){
+  .headerLogin{font-size:10px!important;padding:0 8px!important;height:30px!important}
+}
+@media(max-width:390px){
+  .tools{gap:2px!important}
+  .tools button{min-width:27px!important;padding:0 4px!important}
+  .tools span{margin:0 2px!important}
+  .headerLogin{padding:0 7px!important;min-width:auto!important}
+}
+
+
+/* v2.5.2 — balanced authenticated header */
+header{gap:12px!important}
+.adminBadge{
+  margin-left:0!important;margin-right:auto!important;
+  flex:0 0 auto!important;align-self:center!important;
+  font-size:9px!important;font-weight:750!important;letter-spacing:.11em!important;
+  line-height:1!important;padding:5px 9px!important;
+  opacity:.58!important;border-width:1px!important;
+}
+.tools{margin-left:0!important;flex:0 0 auto!important}
+@media(max-width:900px){
+  header{gap:8px!important}
+  .adminBadge{margin-left:2px!important;margin-right:auto!important;font-size:8px!important;padding:4px 7px!important;letter-spacing:.08em!important}
+}
+@media(max-width:430px){
+  header{gap:5px!important}
+  .adminBadge{font-size:7px!important;padding:4px 6px!important;max-width:72px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}
+}
+
+/* v2.5.3 readable developer audit */
+.auditHint{margin:3px 0 0;color:var(--muted);font-size:12px}.refreshWrap{display:flex;align-items:center;gap:10px}.refreshBtn{min-width:94px;cursor:pointer}.refreshBtn:disabled{opacity:.6;cursor:wait}.refreshOk{font-size:12px;color:var(--muted);opacity:0;transition:opacity .2s}.refreshOk.show{opacity:1}.auditRole{margin-top:3px;font-size:10px;color:var(--muted);letter-spacing:.06em}.auditTable table{min-width:850px}.auditTable th:nth-child(1){width:180px}.auditTable th:nth-child(2){width:160px}.auditTable th:nth-child(3){width:360px}@media(max-width:700px){.refreshWrap{width:100%;justify-content:flex-end}.rowBetween{flex-wrap:wrap}}
