@@ -473,3 +473,7 @@ header{gap:12px!important}
 
 /* v2.5.4 — role indicator */
 .monitor{display:flex;align-items:center;gap:8px}.monitor i{margin-right:0}.monitor span{white-space:nowrap}.monitor b{margin-left:auto;font-size:9px;letter-spacing:.7px;text-transform:uppercase;font-weight:700;color:#aab1ba;background:#191c20;border:1px solid #2b3036;border-radius:999px;padding:4px 7px}.monitor b::first-letter{text-transform:uppercase}
+
+/* v2.5.5 — single clean role status */
+.monitor{justify-content:flex-start!important;gap:12px!important}
+.monitor b{margin-left:0!important}
