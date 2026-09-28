@@ -477,3 +477,12 @@ header{gap:12px!important}
 /* v2.5.5 — single clean role status */
 .monitor{justify-content:flex-start!important;gap:12px!important}
 .monitor b{margin-left:0!important}
+
+/* v2.5.7 — calendar hover hints + visible refresh */
+.tooltip{pointer-events:none!important}
+.hint .tooltip{display:none!important}
+@media (hover:hover) and (pointer:fine){.hint:hover .tooltip{display:block!important}}
+.refreshBtn{background:#111315!important;color:#fff!important;border:1px solid #111315!important;border-radius:9px!important;padding:8px 14px!important;font-weight:600!important;box-shadow:none!important}
+.refreshBtn:hover:not(:disabled){background:#25292d!important;border-color:#25292d!important}
+[data-theme=dark] .refreshBtn{background:#f4f5f6!important;color:#111315!important;border-color:#f4f5f6!important}
+[data-theme=dark] .refreshBtn:hover:not(:disabled){background:#fff!important;border-color:#fff!important}
